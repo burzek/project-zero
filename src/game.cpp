@@ -28,6 +28,9 @@ void Game::Start() {
 	crow = new Crow(const_cast<Renderer*>(scene->GetRenderer()));
 	crow->Initialize();
 
+	new_gun = new NewGun(const_cast<Renderer*> (scene -> GetRenderer()));
+	new_gun->Initialize();
+
 	input_manager = new InputManager();
 	is_active = true;
 }
@@ -37,6 +40,7 @@ void Game::Shutdown() {
 	delete background;
 	delete player;
 	delete crow;
+	delete new_gun;
 	delete scene;
 	delete input_manager;
 }
@@ -49,6 +53,7 @@ void Game::UpdateWorld() {
 	background->Update();
 	player->UpdateState(input_manager);
 	crow->UpdateState();
+	new_gun->UpdateState();
 	update_world_time = SDL_GetTicks();
 }
 
@@ -57,6 +62,7 @@ void Game::RenderWorld() {
 		background->Render();
 		player->Render();
 		crow->Render();
+		new_gun->Render();
 	scene->CommitSceneRender();
 }
 

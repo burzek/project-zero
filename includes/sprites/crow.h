@@ -17,7 +17,7 @@ class Crow : public Sprite
         void Render();
         void UpdateState();
         void Initialize();
-        SpriteId GetSpriteId();
+        SpriteId GetSpriteId() const;
 
 };
 

@@ -23,7 +23,7 @@ class Player : public ControlledSprite {
         Player(const Renderer* renderer);
         ~Player();
         void Render();
-        SpriteId GetSpriteId();
+        SpriteId GetSpriteId() const;
         void UpdateState(InputManager* input_manager);
         void Initialize();
 };

@@ -20,7 +20,7 @@ class Bullet : public Sprite {
         void UpdateState();
         void Initialize();
         bool IsOutOfRange();
-        SpriteId GetSpriteId();
+        SpriteId GetSpriteId() const;
 
 
 

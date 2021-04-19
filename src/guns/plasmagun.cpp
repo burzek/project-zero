@@ -13,8 +13,8 @@ PlasmaGun::~PlasmaGun() {
 void PlasmaGun::Fire() {
     if (SDL_GetTicks() - last_fire_time > RECHARGE_TIME_MS) {
         //create plasma bullet
-        int initx = player->GetSpriteData()->sprite_position.x + (player->GetSpriteData()->sprite_size.w / 2);
-        int inity = player->GetSpriteData()->sprite_position.y - 10;
+        int initx = player->GetSpriteData()->sprite_position.x + player->GetSpriteData()->sprite_size.w - 5;
+        int inity = player->GetSpriteData()->sprite_position.y + (player->GetSpriteData()->sprite_size.h / 2) - 5;
         Bullet* b = new Bullet(renderer, initx, inity);
         b->Initialize();
         bullets->push_back(b);

@@ -13,15 +13,15 @@ Crow::~Crow()
 void Crow::Render()
 {
     Sprite::Render();
-    if (SDL_GetTicks() % 10 == 0)
-    {
-        sprite_data->current_sheet_index++;
-        if (sprite_data->current_sheet_index == sprite_data->sprites_in_sheet) {
-            sprite_data->current_sheet_index = 0;
-        }
-
-    }
-
+//    if (SDL_GetTicks() % 10 == 0)
+//    {
+//        sprite_data->current_sheet_index++;
+//        if (sprite_data->current_sheet_index == sprite_data->sprites_in_sheet) {
+//            sprite_data->current_sheet_index = 0;
+//        }
+//
+//    }
+//
 }
 
 void Crow::UpdateState()
@@ -46,7 +46,7 @@ void Crow::Initialize()
     speed = 4;
 }
 
-SpriteId Crow::GetSpriteId()
+SpriteId Crow::GetSpriteId() const
 {
 	return CROW;
 }

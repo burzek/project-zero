@@ -53,11 +53,13 @@ class Sprite {
 		virtual void Render();
 		virtual void UpdateState() = 0;
 		virtual void Initialize() = 0;
-		virtual SpriteId GetSpriteId() = 0;
+		virtual SpriteId GetSpriteId() const = 0;
 		SpriteData* GetSpriteData() const;
+		virtual int GetAnimationSpeed() const;
 	protected:
 		const Renderer* renderer = nullptr;
 		SpriteData* sprite_data = nullptr;
+		int last_sprite_animation_tick;
 };
 
 #endif /* SRC_SPRITE_H_ */

@@ -27,9 +27,9 @@ void Background::Initialize() {
 
 void Background::Update() {
     for (int i = 0; i < MAX_STARS; i++) {
-        stars[i].y += stars[i].speed;
-        if (stars[i].y >= SCREEN_HEIGHT) {
-            stars[i].y = 0;
+        stars[i].x -= stars[i].speed;
+        if (stars[i].x <= 0) {
+            stars[i].x = SCREEN_WIDTH;
         }
     }
 
@@ -44,5 +44,5 @@ void Background::Render() {
         SDL_SetRenderDrawColor(this->renderer->sdl_renderer, color, color, color, SDL_ALPHA_OPAQUE);
         SDL_Rect rect = {stars[i].x, stars[i].y, 2, 2};
         SDL_RenderDrawRect(this->renderer->sdl_renderer, &rect);
-    }    
+    }
 }

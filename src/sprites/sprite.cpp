@@ -11,6 +11,7 @@ Sprite::Sprite(const Renderer *renderer)
 {
     this->renderer = renderer;
     this->sprite_data = new SpriteData();
+    this->last_sprite_animation_tick = 0;
 }
 
 Sprite::~Sprite()
@@ -64,18 +65,38 @@ void Sprite::LoadTextureSheet(std::string texture_name, int sprites_in_sheet, in
 
 void Sprite::Render()
 {
+    if (sprite_data->sprites_in_sheet > 1 && GetAnimationSpeed() != 0)
+    {
+        Uint32 tick = SDL_GetTicks();
+        if (tick - last_sprite_animation_tick > GetAnimationSpeed())
+        {
+            sprite_data->current_sheet_index = (sprite_data->current_sheet_index + 1) % sprite_data->sprites_in_sheet;
+            last_sprite_animation_tick = tick;
+        }
+    }
+
+
+
     SDL_Rect src_rect;
     src_rect.x = sprite_data->sprite_size.w * sprite_data->current_sheet_index;
     src_rect.y = 0;
-    src_rect.w = sprite_data->sprite_size.w;
+    src_rect.w = sprite_data->sprite_size.w;        void Render();
+
     src_rect.h = sprite_data->sprite_size.h;
     SDL_Rect dest_rect;
     dest_rect.x = sprite_data->sprite_position.x;
     dest_rect.y = sprite_data->sprite_position.y;
     dest_rect.w = sprite_data->sprite_size.w;
     dest_rect.h = sprite_data->sprite_size.h;
-    SDL_RenderCopy(renderer->sdl_renderer, sprite_data->sdl_texture, &src_rect, &dest_rect);
+    SDL_RenderCopyEx(renderer->sdl_renderer, sprite_data->sdl_texture, &src_rect, &dest_rect, (double)sprite_data->sprite_transformation.rotation_degrees, nullptr, SDL_FLIP_NONE);
+
 }
+
+int Sprite::GetAnimationSpeed() const
+{
+    return 0;
+}
+
 
 SpriteData *Sprite::GetSpriteData() const
 {

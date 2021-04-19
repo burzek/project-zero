@@ -16,7 +16,7 @@ void Bullet::Initialize() {
 
 
 void Bullet::UpdateState() {
-    sprite_data->sprite_position.y -= BULLET_SPEED;
+    sprite_data->sprite_position.x += BULLET_SPEED;
     range--;
 }
 
@@ -24,7 +24,7 @@ bool Bullet::IsOutOfRange() {
     return range <= 0;
 }
 
-SpriteId Bullet::GetSpriteId() {
+SpriteId Bullet::GetSpriteId() const {
     return PLASMA_BULLET;
 }
 
