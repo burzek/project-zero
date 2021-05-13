@@ -23,9 +23,9 @@ void NewGun::Initialize()
 void NewGun::UpdateState()
 {
     sprite_data->sprite_position.y += 4;
-    if (sprite_data->sprite_position.y < 0)
+    if (sprite_data->sprite_position.y > SCREEN_HEIGHT)
     {
-
+        sprite_data->sprite_position.y = 10;
     }
 }
 

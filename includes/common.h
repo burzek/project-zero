@@ -16,5 +16,11 @@ enum GunId {
     GUIDED_ROCKET
 };
 
+enum LevelId {
+  INTRO
+};
+
+
+
 #endif /*COMMON_H*/
 

@@ -18,6 +18,11 @@ void Game::Start() {
 	scene = new Scene();
 	scene->InitializeScene();
 
+	LevelManager *lm = new LevelManager();
+	lm->LoadLevels();
+
+	game_level = new GameLevel();
+	game_level->LoadLevelDescription("level1.txt");
 
 	player = new Player(const_cast<Renderer*>(scene->GetRenderer()));
 	player->Initialize();

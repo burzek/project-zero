@@ -15,6 +15,8 @@
 #include "sprites/newgun.h"
 #include "background.h"
 #include "guns/plasmagun.h"
+#include "gamelevel.h"
+#include "levelmanager.h"
 
 class Game {
 public:
@@ -31,6 +33,7 @@ private:
 	Scene* scene = nullptr;
 	InputManager* input_manager  = nullptr;
 	Uint32 update_world_time;
+    GameLevel* game_level = nullptr;
 
 	//game objects
 	Player* player = nullptr;
