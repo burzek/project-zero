@@ -2,75 +2,38 @@
 
 using namespace std;
 
-GameLevel::GameLevel()
+GameLevel::GameLevel(LevelId level_id, int level_length, std::vector<int> ceiling_tiles, std::vector<int> floor_tiles)
 {
+    this->level_id = level_id;
+    this->level_length = level_length;
+    this->ceiling_tiles = ceiling_tiles;
+    this->floor_tiles = floor_tiles;
 }
+
 
 GameLevel::~GameLevel()
 {
 }
 
-void GameLevel::LoadLevelDescription(std::string level_description_file)
+
+const LevelId GameLevel::GetLevelId()
 {
-    ifstream level_file("resources/levels/" + level_description_file);
-    string line;
-
-    while (getline(level_file, line))
-    {
-        ParseId(line);
-        ParseLength(line) ;
-        ParseCeiling(line);
-        ParseFloor(line);
-        ParseEnemies(line);
-    }
-
+    return this->level_id;
 }
 
-
-
-void GameLevel::ParseId(string line)
+const int GameLevel::GetLevelLength()
 {
-    level_id = LevelId::INTRO;
-    if (line.rfind("id:") == 0)
-    {
-           if (line.substr(3).compare("INTRO") == 0)
-           {
-                level_id = LevelId::INTRO;
-           }
-    }
-
+    return this->level_length;
 }
 
-void GameLevel::ParseLength(string line)
+std::vector<int> GameLevel::GetCeilingTiles()
 {
-    if (line.rfind("length:") == 0)
-    {
-        level_length = atoi(line.substr(8).c_str());
-    }
+    return this->ceiling_tiles;
 }
 
-void GameLevel::ParseCeiling(string line)
+std::vector<int> GameLevel::GetFloorTiles()
 {
-    if (line.rfind("ceiling:") == 0)
-    {
-        //todo
-    }
+    return this->floor_tiles;
 }
 
-void GameLevel::ParseFloor(string line)
-{
-    if (line.rfind("floor:") == 0)
-    {
-            line = line.substr(7);
-            stringstream ss(line.substr(7));
-            string token;
-            while (std::getline(ss, token, ',')) {
-                cout << "token:" << token << endl;
-            }
-    }
-}
-
-void GameLevel::ParseEnemies(string line)
-{
-}
 

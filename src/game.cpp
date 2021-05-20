@@ -20,14 +20,12 @@ void Game::Start() {
 
 	LevelManager *lm = new LevelManager();
 	lm->LoadLevels();
-
-	game_level = new GameLevel();
-	game_level->LoadLevelDescription("level1.txt");
+	lm->SetCurrentLevel(LevelId::INTRO);
 
 	player = new Player(const_cast<Renderer*>(scene->GetRenderer()));
 	player->Initialize();
 
-	background = new Background(const_cast<Renderer*>(scene->GetRenderer()));
+	background = new Background(const_cast<Renderer*>(scene->GetRenderer()), const_cast<LevelManager*>(lm));
 	background->Initialize();
 
 	crow = new Crow(const_cast<Renderer*>(scene->GetRenderer()));

@@ -1,6 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <string>
+
 enum SpriteId
 {
 	PLAYER,
@@ -19,6 +21,8 @@ enum GunId {
 enum LevelId {
   INTRO
 };
+
+#define LEVEL_PATH "resources/levels"
 
 
 
